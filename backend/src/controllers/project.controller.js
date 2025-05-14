@@ -15,6 +15,39 @@ exports.getProjects = async (req, res) => {
   }
 };
 
+// Fetch project title
+exports.getProjectTitle = async (req, res) => {
+  try {
+    const projectId = parseInt(req.params.id, 10);
+    if (isNaN(projectId)) {
+      return res.status(400).json({ message: 'Invalid project ID' });
+    }
+
+    const where = {
+      id: projectId,
+      ...(req.user.role !== 'ADMIN' && { userId: req.user.id }),
+    };
+
+    const project = await prisma.project.findUnique({
+      where: { id: projectId },
+      select: {
+        title: true,
+        userId: true,
+      },
+    });
+
+    if (!project || (req.user.role !== 'ADMIN' && project.userId !== req.user.id)) {
+      return res.status(404).json({ message: 'Project not found or access denied' });
+    }
+
+    res.json({ title: project.title });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
 // Create project
 exports.createProject = async (req, res) => {
   const { title, userId } = req.body;
