@@ -10,14 +10,12 @@ import useConfirmModal from '@/hooks/useConfirmModal';
 import TitleBar from '@/components/TitleBar';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
-import useTitleStore from '../stores/titleStore';
 
 export default function Projects() {
   const [title, setTitle] = useState('');
   const [editId, setEditId] = useState(null);
   const [editTitle, setEditTitle] = useState('');
   const [error, setError] = useState(null);
-  const setPassTitle = useTitleStore((state) => state.setPassTitle);
 
   const router = useRouter();
   const { user, logout } = useAuth();

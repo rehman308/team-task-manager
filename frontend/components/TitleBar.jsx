@@ -4,12 +4,10 @@ import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 import Button from './Button';
 import useAuth from '../auth/useAuth';
-import useTitleStore from '../stores/titleStore';
 
 export default function TitleBar({title}) {
   const pathname = usePathname();
   const { logout, user } = useAuth();
-  const projectTitle = useTitleStore((state) => state.title);
 
   const handleLogout = () => {
     logout();
