@@ -35,7 +35,8 @@ A full-stack project task management application for teams. Built using MERN sta
 
 ### Frontend:
 
-- React (Vite)
+- React.js (Vite)
+- Next.js
 - Zustand (Auth state)
 - React Query (Data fetching & caching)
 - React Router (Navigation)
@@ -132,16 +133,15 @@ Team Task Manager/
 │       ├── middleware/
 │       └── index.js
 └── frontend/
-    └── src/
 	    ├── api/
+      ├── app/
+          ├── admin/
+          ├── login/
+          ├── projects/
+          └── register/
 	    ├── auth/
 	    ├── components/
-	    ├── hooks/
-        ├── pages/
-        ├── utils/
-        ├── App.jsx
-        ├── index.css
-        └── main.jsx
+	    └── hooks/
 ```
 
 ## API Endpoints
